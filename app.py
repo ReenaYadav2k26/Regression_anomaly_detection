@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-# --- LOAD PRODUCTION ARTIFACTS ---
+# --- LOAD PRODUCTION ARTIFACTS -
 def load_artifacts():
     try:
         model = pickle.load(open("model/regression_model.pkl", "rb"))
