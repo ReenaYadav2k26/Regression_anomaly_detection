@@ -46,6 +46,20 @@ model, scaler, features, threshold = load_artifacts()
 API_KEY = os.getenv("API_KEY", "my-secret-key-123")
 
 # -----------------------------
+# 🔹 ROOT ROUTE (ADD THIS)
+# -----------------------------
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "API is running 🚀",
+        "endpoints": {
+            "/health": "GET",
+            "/predict": "POST"
+        }
+    })
+
+
+# -----------------------------
 # 🔹 HEALTH CHECK
 # -----------------------------
 @app.route("/health", methods=["GET"])
@@ -54,7 +68,6 @@ def health():
         "status": "healthy" if model else "error",
         "model_loaded": model is not None
     })
-
 
 # -----------------------------
 # 🔹 PREDICT ROUTE
